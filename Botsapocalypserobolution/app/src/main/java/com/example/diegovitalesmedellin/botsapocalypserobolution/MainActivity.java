@@ -20,10 +20,7 @@ public class MainActivity extends AppCompatActivity
 {
 
     private TextToSpeech voz;
-    private String nom;
-    Intent datos;
-    ArrayList<String> text = datos.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-    ArrayList<String> nombre = datos.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+    private boolean pv = false, aa = false, in = false, dm = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,39 +84,143 @@ public class MainActivity extends AppCompatActivity
         if (resultcode== Activity.RESULT_OK && datos!=null)
         {
 
+            ArrayList<String> text = datos.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             Toast.makeText(this, text.get(0), Toast.LENGTH_LONG).show();
-            if (text.get(0).equals("Hola")) {
+            if (text.get(0).equals("Hola") && pv == false) {
 
-                voz.speak("Hola soldado, como te yamas?", TextToSpeech.QUEUE_FLUSH, null);
-
-                text.set(0," ");
-
-                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-//              Especificamos el idioma, en esta ocasión probé con el de Estados Unidos
-                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
-                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-                //Iniciamos la actividad dentro de un Try en caso surja un error.
-                try
-                {
-
-                    startActivityForResult(intent, 1);
-
-                }
-
-                catch (ActivityNotFoundException a)
-                {
-
-                    Toast.makeText(getApplicationContext(), "Tu dispositivo no soporta el reconocimiento de voz", Toast.LENGTH_LONG).show();
-
-                }
-
+                voz.speak("Hola, bienvenido soldado", TextToSpeech.QUEUE_FLUSH, null);
                 try {
-                    Thread.sleep(10000);
+                    Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                nom = nombre.get(0);
-                voz.speak("Bienvenido, novato " + nom, TextToSpeech.QUEUE_FLUSH, null);
+                pv = true;
+
+            }
+
+            if (text.get(0).equals("necesito apoyo") && pv == true)
+            {
+
+                if (aa == true)
+                {
+
+                    voz.speak("Puedes pedir: ,Inmunidad por 15 segundos, Disparo mortal", TextToSpeech.QUEUE_FLUSH, null);
+
+                }
+
+                if (in == true)
+                {
+
+                    voz.speak("Puedes pedir: ,Apoyo aereo, Disparo mortal", TextToSpeech.QUEUE_FLUSH, null);
+
+                }
+
+                if (dm == true)
+                {
+
+                    voz.speak("Puedes pedir: ,Apoyo aereo, Inmunidad por 15 segundos", TextToSpeech.QUEUE_FLUSH, null);
+
+                }
+
+                else
+                {
+
+                    voz.speak("Puedes pedir: ,Apoyo aereo, Inmunidad por 15 segundos, Disparo mortal", TextToSpeech.QUEUE_FLUSH, null);
+
+                }
+
+            }
+
+            if (text.get(0).equals("necesito apoyo") && pv == false)
+            {
+
+                voz.speak("Espera, todovia no empezamos", TextToSpeech.QUEUE_FLUSH, null);
+
+            }
+
+            if (text.get(0).equals("apoyo aéreo") && pv == true)
+            {
+
+                if (!aa)
+                {
+
+                    voz.speak("En camino soldado",TextToSpeech.QUEUE_FLUSH, null);
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    aa = true;
+
+                }
+
+                else
+                {
+
+                    voz.speak("No puedes, ya lo usaste",TextToSpeech.QUEUE_FLUSH, null);
+
+                }
+
+            }
+
+            if (text.get(0).equals("apoyo aéreo") && pv == false)
+            {
+                
+                voz.speak("Espera, todovia no empezamos", TextToSpeech.QUEUE_FLUSH, null);
+
+            }
+
+            if (text.get(0).equals("inmunidad") && pv == true && in == false)
+            {
+
+                voz.speak("Ahora eres invensible por 15 segundos", TextToSpeech.QUEUE_FLUSH, null);
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                in = true;
+
+            }
+
+            if (text.get(0).equals("inmunidad") && pv == false && in == false)
+            {
+
+                voz.speak("Espera, todovia no empezamos", TextToSpeech.QUEUE_FLUSH, null);
+
+            }
+
+            if (text.get(0).equals("inmunidad") && pv == true && in == true)
+            {
+
+                voz.speak("No puedes ser invencible dos veces", TextToSpeech.QUEUE_FLUSH, null);
+
+            }
+
+            if (text.get(0).equals("disparo mortal") && pv == true && dm == false)
+            {
+
+                voz.speak("Tienes un solo disparo poderoso, usalo bien", TextToSpeech.QUEUE_FLUSH, null);
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                dm = true;
+
+            }
+
+            if (text.get(0).equals("disparo mortal") && pv == false && in == false)
+            {
+
+                voz.speak("Espera, todovia no empezamos", TextToSpeech.QUEUE_FLUSH, null);
+
+            }
+
+            if (text.get(0).equals("disparo mortal") && pv == true && dm == true)
+            {
+
+                voz.speak("Lo siento, ya lo usaste y no hay mas", TextToSpeech.QUEUE_FLUSH, null);
 
             }
 
