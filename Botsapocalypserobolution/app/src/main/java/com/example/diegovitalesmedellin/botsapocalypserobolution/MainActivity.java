@@ -20,9 +20,10 @@ public class MainActivity extends AppCompatActivity
 {
 
     private TextToSpeech voz;
-    private String nombre;
+    private String nom;
     Intent datos;
     ArrayList<String> text = datos.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+    ArrayList<String> nombre = datos.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,8 +118,8 @@ public class MainActivity extends AppCompatActivity
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                nombre = text.get(0);
-                voz.speak("Bienvenido, novato " + nombre, TextToSpeech.QUEUE_FLUSH, null);
+                nom = nombre.get(0);
+                voz.speak("Bienvenido, novato " + nom, TextToSpeech.QUEUE_FLUSH, null);
 
             }
 
