@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity
 {
 
     private TextToSpeech voz;
-    private boolean pv = false, aa = false, in = false, dm = false;
+    private boolean pv = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,9 +88,15 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(this, text.get(0), Toast.LENGTH_LONG).show();
             if (text.get(0).equals("Hola") && pv == false) {
 
-                voz.speak("Hola, bienvenido soldado", TextToSpeech.QUEUE_FLUSH, null);
+                voz.speak("Hola, bienvenido soldado, sor Rollito un robot hecho por os profesores de inteli i estoy aqui para ayudarte. Este es un proyecto de realidad virtual hecho por los alumnos de programacion avanzada de Intelirobot; en este juego llamado Botsapocalypse robolution debes acabar con todos los robots a tu alredeor, a lo largo del juego estarán apareciendo en diferentes posiciones robots malvados i de dispararan bloke de LEGO, para eso tienes un arma, puedes esquivar i moverte en todo el esspacio pero cuidado a tu alrededor. Puedes pedir apoyo dicendo, necesito apoyo, luego se te dira una lista de comandos.", TextToSpeech.QUEUE_FLUSH, null);
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(42000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                voz.speak("¿quieres saber la historia?, por favor diga, quiero conocer la historia, sino´ diga empezar", TextToSpeech.QUEUE_FLUSH, null);
+                try {
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -98,36 +104,44 @@ public class MainActivity extends AppCompatActivity
 
             }
 
+            if(text.get(0).equals("Quiero conocer la historia") && pv == true)
+            {
+
+                voz.speak("Ok, por favor espere", TextToSpeech.QUEUE_FLUSH, null);
+                try {
+                    Thread.sleep(1500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                voz.speak("Hace dos años los robots se rebelaron en Inteli,debido a que fueren sobreexplotados, pero pensarann que no debio pasar porque no piensan, pero nooooooo, si piensan y mucho, pero no igualan nuestra inteligencia, excepto DarkDroid el robot mas poderoso e inteligente jamas creado, pero ya tu mision, solo diga empezar", TextToSpeech.QUEUE_FLUSH, null);
+
+            }
+
+            if (text.get(0).equals("quiero conocer la historia") && pv == false)
+            {
+
+                voz.speak("Espera, todovia no empezamos", TextToSpeech.QUEUE_FLUSH, null);
+
+            }
+
+            if(text.get(0).equals("empezar") && pv == true)
+            {
+
+                voz.speak("Preparate", TextToSpeech.QUEUE_FLUSH, null);
+
+            }
+
+            if (text.get(0).equals("empezar") && pv == false)
+            {
+
+                voz.speak("Espera, todovia no empezamos", TextToSpeech.QUEUE_FLUSH, null);
+
+            }
+
             if (text.get(0).equals("necesito apoyo") && pv == true)
             {
 
-                if (aa == true)
-                {
-
-                    voz.speak("Puedes pedir: ,Inmunidad por 15 segundos, Disparo mortal", TextToSpeech.QUEUE_FLUSH, null);
-
-                }
-
-                if (in == true)
-                {
-
-                    voz.speak("Puedes pedir: ,Apoyo aereo, Disparo mortal", TextToSpeech.QUEUE_FLUSH, null);
-
-                }
-
-                if (dm == true)
-                {
-
-                    voz.speak("Puedes pedir: ,Apoyo aereo, Inmunidad por 15 segundos", TextToSpeech.QUEUE_FLUSH, null);
-
-                }
-
-                else
-                {
-
-                    voz.speak("Puedes pedir: ,Apoyo aereo, Inmunidad por 15 segundos, Disparo mortal", TextToSpeech.QUEUE_FLUSH, null);
-
-                }
+                voz.speak("Puedes pedir: ,Apoyo aereo, Inmunidad por kince segundos, Disparo mortal", TextToSpeech.QUEUE_FLUSH, null);
 
             }
 
@@ -141,25 +155,7 @@ public class MainActivity extends AppCompatActivity
             if (text.get(0).equals("apoyo aéreo") && pv == true)
             {
 
-                if (!aa)
-                {
-
-                    voz.speak("En camino soldado",TextToSpeech.QUEUE_FLUSH, null);
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    aa = true;
-
-                }
-
-                else
-                {
-
-                    voz.speak("No puedes, ya lo usaste",TextToSpeech.QUEUE_FLUSH, null);
-
-                }
+                voz.speak("En camino soldado",TextToSpeech.QUEUE_FLUSH, null);
 
             }
 
@@ -170,57 +166,31 @@ public class MainActivity extends AppCompatActivity
 
             }
 
-            if (text.get(0).equals("inmunidad") && pv == true && in == false)
+            if (text.get(0).equals("inmunidad") && pv == true)
             {
 
-                voz.speak("Ahora eres invensible por 15 segundos", TextToSpeech.QUEUE_FLUSH, null);
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                in = true;
+                voz.speak("Ahora eres invensible por kince segundos", TextToSpeech.QUEUE_FLUSH, null);
 
             }
 
-            if (text.get(0).equals("inmunidad") && pv == false && in == false)
+            if (text.get(0).equals("inmunidad") && pv == false)
             {
 
                 voz.speak("Espera, todovia no empezamos", TextToSpeech.QUEUE_FLUSH, null);
 
             }
 
-            if (text.get(0).equals("inmunidad") && pv == true && in == true)
-            {
-
-                voz.speak("No puedes ser invencible dos veces", TextToSpeech.QUEUE_FLUSH, null);
-
-            }
-
-            if (text.get(0).equals("disparo mortal") && pv == true && dm == false)
+            if (text.get(0).equals("disparo mortal") && pv == true)
             {
 
                 voz.speak("Tienes un solo disparo poderoso, usalo bien", TextToSpeech.QUEUE_FLUSH, null);
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                dm = true;
 
             }
 
-            if (text.get(0).equals("disparo mortal") && pv == false && in == false)
+            if (text.get(0).equals("disparo mortal") && pv == false)
             {
 
                 voz.speak("Espera, todovia no empezamos", TextToSpeech.QUEUE_FLUSH, null);
-
-            }
-
-            if (text.get(0).equals("disparo mortal") && pv == true && dm == true)
-            {
-
-                voz.speak("Lo siento, ya lo usaste y no hay mas", TextToSpeech.QUEUE_FLUSH, null);
 
             }
 
