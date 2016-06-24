@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity
                 if (status != TextToSpeech.ERROR)
                 {
 
-                    voz.setLanguage(Locale.US);
+                    voz.setLanguage(Locale.ROOT);
 
                 }
 
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                voz.speak("¿quieres saber la historia?, por favor diga, quiero conocer la historia, sino´ diga empezar", TextToSpeech.QUEUE_FLUSH, null);
+                voz.speak("¿quieres saber la historia?, por favor diga, quiero conocer la historia, sino diga empezar", TextToSpeech.QUEUE_FLUSH, null);
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                voz.speak("Hace dos años los robots se rebelaron en Inteli,debido a que fueren sobreexplotados, pero pensarann que no debio pasar porque no piensan, pero nooooooo, si piensan y mucho, pero no igualan nuestra inteligencia, excepto DarkDroid el robot mas poderoso e inteligente jamas creado, pero ya tu mision, solo diga empezar", TextToSpeech.QUEUE_FLUSH, null);
+                voz.speak("Hace dos años los robots se rebelaron en Inteli,debido a que fueren sobreexplotados, pero pensarann que no debio pasar porque los robots no piensan, pero nooooooo, si piensan, y mucho; pero no igualan nuestra inteligencia, excepto DarkDroid, el robot mas poderoso e inteligente jamas creado, pero ya tu mision, solo diga empezar", TextToSpeech.QUEUE_FLUSH, null);
 
             }
 
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity
             if (text.get(0).equals("necesito apoyo") && pv == true)
             {
 
-                voz.speak("Puedes pedir: ,Apoyo aereo, Inmunidad por kince segundos, Disparo mortal", TextToSpeech.QUEUE_FLUSH, null);
+                voz.speak("Puedes pedir: ,Apoyo aereo, Inmunidad por quince segundos, Disparo mortal", TextToSpeech.QUEUE_FLUSH, null);
 
             }
 
